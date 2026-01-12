@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lara Wehbe - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #764ba2;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50px, -50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 2rem;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(238, 90, 82, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(238, 90, 82, 0.6);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-details h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .project-details ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .project-details li {
+            color: #666;
+            margin-bottom: 0.3rem;
+            position: relative;
+        }
+
+        .project-details li::before {
+            content: '•';
+            color: #667eea;
+            position: absolute;
+            left: -1rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-cta {
+            display: inline-block;
+            background: white;
+            color: #764ba2;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Lara Wehbe</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image">
+                    <!-- Replace with your image: <img src="your-image.jpg" alt="Your Name" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"> -->
+                    <img src="myimage.jpg" alt="Lara Wehbe" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"> 
+                </div>
+                <h1>Lara WEHBE </h1>
+                <p>Replace this with a brief description about yourself. What you do, your passions, and what makes you unique as a developer or professional.</p>
+                <a href="#contact" class="cta-button">Let's Collaborate</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <h3>Project Name 1</h3>
+                    <p class="project-description">
+                        Add a brief description of your first project here. Explain what it does, what problem it solves, and why it's interesting.
+                    </p>
+                    
+                    <div class="project-details">
+                        <h4>Tech Stack:</h4>
+                        <ul>
+                            <li>Technology 1</li>
+                            <li>Technology 2</li>
+                            <li>Technology 3</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Main Objective:</h4>
+                        <ul>
+                            <li>Primary goal or objective</li>
+                            <li>Secondary objective</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Deployment:</h4>
+                        <ul>
+                            <li>Deployment platform (e.g., Vercel, Netlify, AWS)</li>
+                            <li>Additional deployment details</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <h3>Smart Trading Assistant</h3>
+                    <p class="project-description">
+                        An intelligent trading assistant powered by GPT-4 that uses function calling to analyze market data, execute trades, and provide real-time financial insights. The assistant can fetch stock prices, calculate technical indicators, analyze market sentiment, and execute paper trades through API integrations.
+                    </p>
+                    
+                    <div class="project-details">
+                        <h4>Tech Stack:</h4>
+                        <ul>
+                            <li>OpenAI GPT-4 with Function Calling</li>
+                            <li>Python - FastAPI - Streamlit</li>
+                            <li>Alpha Vantage API - Yahoo Finance API</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Main Objective:</h4>
+                        <ul>
+                            <li>Automate financial analysis and trading decisions</li>
+                            <li>Provide intelligent market insights through natural language</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Deployment:</h4>
+                        <ul>
+                            <li>Streamlit Cloud</li>
+                            <li>Docker containerization for API services</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <h3>Custom Legal Advisor Model</h3>
+                    <p class="project-description">
+                        Fine-tuned Llama-2-7B-Chat model specialized for legal document analysis and advice. The model was trained on legal datasets to provide accurate legal guidance, contract analysis, and compliance recommendations. Uses instruction-based fine-tuning with LoRA for efficient training.
+                    </p>
+                    
+                    <div class="project-details">
+                        <h4>Tech Stack:</h4>
+                        <ul>
+                            <li>Hugging Face Transformers - PyTorch</li>
+                            <li>LoRA (Low-Rank Adaptation) - PEFT</li>
+                            <li>Weights & Biases for experiment tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Main Objective:</h4>
+                        <ul>
+                            <li>Create domain-specific legal AI assistant</li>
+                            <li>Improve accuracy for legal document understanding</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Deployment:</h4>
+                        <ul>
+                            <li>Hugging Face Model Hub</li>
+                            <li>Digital Ocean</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <h3>Your Custom Project!</h3>
+                    <p class="project-description">
+                        Example: A vision-language model application that analyzes medical images (X-rays, MRIs, CT scans) and provides detailed diagnostic insights. Uses GPT-4 Vision and specialized medical vision models to identify abnormalities, generate reports, and assist healthcare professionals in diagnosis.
+                    </p>
+                    
+                    <div class="project-details">
+                        <h4>Tech Stack:</h4>
+                        <ul>
+                            <li>GPT-4 Vision - LLaVA-Med</li>
+                            <li>OpenCV - PIL - Gradio</li>
+                            <li>DICOM image processing libraries</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Main Objective:</h4>
+                        <ul>
+                            <li>Assist radiologists in faster image analysis</li>
+                            <li>Generate detailed medical reports from images</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-details">
+                        <h4>Deployment:</h4>
+                        <ul>
+                            <li>Gradio interface on Hugging Face Spaces</li>
+                            <li>HIPAA-compliant cloud infrastructure</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Live Demo</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Work Together</h2>
+            <p>Ready to bring your ideas to life? I'm always excited to collaborate on new projects and opportunities.</p>
+            <a href="#" class="contact-cta">Get In Touch</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
